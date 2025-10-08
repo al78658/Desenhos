@@ -3,12 +3,12 @@ const startScreen = document.getElementById("startScreen");
 const appScreen = document.getElementById("appScreen");
 const overlayImage = document.getElementById("overlayImage");
 const video = document.getElementById("video");
+const opacityRange = document.getElementById("opacityRange");
 const rotateButton = document.getElementById("rotateButton");
-const opacitySlider = document.getElementById("opacitySlider");
-const opacityValue = document.getElementById("opacityValue");
 
-let rotationDegree = 0; // Rotações acumuladas
+let rotationDegree = 0;
 
+// Função para iniciar a câmera
 async function startCamera() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -20,7 +20,7 @@ async function startCamera() {
 
     video.srcObject = stream;
 
-    // Assegurar que vídeo funciona bem no iOS Safari
+    // Assegurar que o vídeo funcione bem no iOS Safari
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
@@ -30,6 +30,18 @@ async function startCamera() {
   }
 }
 
+// Função para alterar a opacidade da imagem
+opacityRange.addEventListener("input", () => {
+  overlayImage.style.opacity = opacityRange.value;
+});
+
+// Função para girar a imagem
+rotateButton.addEventListener("click", () => {
+  rotationDegree = (rotationDegree + 90) % 360; // Gira a imagem em 90 graus
+  overlayImage.style.transform = `rotate(${rotationDegree}deg)`;
+});
+
+// Função para carregar a imagem sobreposta e iniciar a câmera
 imageInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (!file) return;
@@ -39,23 +51,11 @@ imageInput.addEventListener("change", (event) => {
     overlayImage.src = reader.result;
 
     overlayImage.onload = () => {
-      startScreen.style.display = "none";
-      appScreen.style.display = "block";
-      startCamera();
+      // Ajusta o fluxo para garantir que os controles fiquem visíveis
+      startScreen.style.display = "none"; // Tela de início escondida
+      appScreen.style.display = "block"; // Tela do aplicativo visível
+      startCamera(); // Inicia a câmera
     };
   };
   reader.readAsDataURL(file);
-});
-
-// Função para girar a imagem
-rotateButton.addEventListener("click", () => {
-  rotationDegree -= 90; // Gira 90 graus para a esquerda
-  overlayImage.style.transform = `rotate(${rotationDegree}deg)`;
-});
-
-// Atualiza a transparência da imagem
-opacitySlider.addEventListener("input", (event) => {
-  const opacity = event.target.value / 100;
-  overlayImage.style.opacity = opacity;
-  opacityValue.textContent = `${event.target.value}%`;
 });
