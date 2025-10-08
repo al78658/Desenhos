@@ -4,19 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>App de Desenho com Câmera</title>
+
+  <!-- Ícone da aplicação -->
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <meta name="theme-color" content="#ffffff">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <!-- Tela inicial -->
   <div id="startScreen">
     <label for="imageInput" class="custom-button">Escolher Imagem</label>
     <input type="file" accept="image/*" id="imageInput" style="display: none;">
   </div>
 
+  <!-- Tela principal -->
   <div id="appScreen" style="display: none;">
     <video id="video" autoplay muted playsinline></video>
     <img id="overlayImage" alt="Imagem sobreposta" />
-    <button id="rotateButton">↺</button>
+    <button id="rotateButton">↻</button>
     <div id="opacityControl">
       <label for="opacityRange">Opacidade</label>
       <input type="range" id="opacityRange" min="0" max="1" step="0.05" value="0.5">

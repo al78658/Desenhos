@@ -8,7 +8,7 @@ const rotateButton = document.getElementById("rotateButton");
 
 let rotationDegree = 0;
 
-// Função para iniciar a câmera
+// Inicia a câmera
 async function startCamera() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -19,8 +19,6 @@ async function startCamera() {
     });
 
     video.srcObject = stream;
-
-    // Assegurar que o vídeo funcione bem no iOS Safari
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
@@ -30,18 +28,18 @@ async function startCamera() {
   }
 }
 
-// Função para alterar a opacidade da imagem
+// Controla opacidade
 opacityRange.addEventListener("input", () => {
   overlayImage.style.opacity = opacityRange.value;
 });
 
-// Função para girar a imagem
+// Gira a imagem 90° no sentido horário
 rotateButton.addEventListener("click", () => {
-  rotationDegree = (rotationDegree + 90) % 360; // Gira a imagem em 90 graus
+  rotationDegree = (rotationDegree + 90) % 360;
   overlayImage.style.transform = `rotate(${rotationDegree}deg)`;
 });
 
-// Função para carregar a imagem sobreposta e iniciar a câmera
+// Carrega imagem escolhida e inicia câmera
 imageInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (!file) return;
@@ -49,12 +47,10 @@ imageInput.addEventListener("change", (event) => {
   const reader = new FileReader();
   reader.onload = () => {
     overlayImage.src = reader.result;
-
     overlayImage.onload = () => {
-      // Ajusta o fluxo para garantir que os controles fiquem visíveis
-      startScreen.style.display = "none"; // Tela de início escondida
-      appScreen.style.display = "block"; // Tela do aplicativo visível
-      startCamera(); // Inicia a câmera
+      startScreen.style.display = "none";
+      appScreen.style.display = "block";
+      startCamera();
     };
   };
   reader.readAsDataURL(file);
