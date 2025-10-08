@@ -55,12 +55,13 @@ html, body {
 
 /* Botões e controlos */
 #rotateButton,
+#newImageButton,
 #opacityControl {
   position: absolute;
   z-index: 2;
 }
 
-/* Botão de rotação */
+/* Botão de rotação ↻ */
 #rotateButton {
   top: 10px;
   left: 10px;
@@ -75,6 +76,24 @@ html, body {
 }
 
 #rotateButton:hover {
+  transform: scale(1.1);
+}
+
+/* Botão + para nova imagem */
+#newImageButton {
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#newImageButton:hover {
   transform: scale(1.1);
 }
 

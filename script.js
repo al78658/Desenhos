@@ -1,10 +1,12 @@
 const imageInput = document.getElementById("imageInput");
+const newImageInput = document.getElementById("newImageInput");
 const startScreen = document.getElementById("startScreen");
 const appScreen = document.getElementById("appScreen");
 const overlayImage = document.getElementById("overlayImage");
 const video = document.getElementById("video");
 const opacityRange = document.getElementById("opacityRange");
 const rotateButton = document.getElementById("rotateButton");
+const newImageButton = document.getElementById("newImageButton");
 
 let rotationDegree = 0;
 
@@ -39,11 +41,9 @@ rotateButton.addEventListener("click", () => {
   overlayImage.style.transform = `rotate(${rotationDegree}deg)`;
 });
 
-// Carrega imagem escolhida e inicia câmera
-imageInput.addEventListener("change", (event) => {
-  const file = event.target.files[0];
+// Função genérica para carregar imagem
+function carregarImagem(file) {
   if (!file) return;
-
   const reader = new FileReader();
   reader.onload = () => {
     overlayImage.src = reader.result;
@@ -54,4 +54,19 @@ imageInput.addEventListener("change", (event) => {
     };
   };
   reader.readAsDataURL(file);
+}
+
+// Primeira imagem
+imageInput.addEventListener("change", (event) => {
+  carregarImagem(event.target.files[0]);
+});
+
+// Botão "+" abre seletor de nova imagem
+newImageButton.addEventListener("click", () => {
+  newImageInput.click();
+});
+
+// Quando escolhe nova imagem
+newImageInput.addEventListener("change", (event) => {
+  carregarImagem(event.target.files[0]);
 });
