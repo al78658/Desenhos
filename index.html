@@ -16,6 +16,16 @@
   <div id="appScreen" style="display: none;">
     <video id="video" autoplay muted playsinline></video>
     <img id="overlayImage" alt="Imagem sobreposta" />
+    
+    <!-- Botão para girar imagem -->
+    <button id="rotateButton" class="rotate-button">↻</button>
+    
+    <!-- Controle de transparência -->
+    <div id="opacityControl">
+      <label for="opacitySlider">Transparência:</label>
+      <input type="range" id="opacitySlider" min="0" max="100" value="50">
+      <span id="opacityValue">50%</span>
+    </div>
   </div>
 
   <script src="script.js"></script>

@@ -48,3 +48,38 @@ html, body {
   z-index: 2;
   pointer-events: none;
 }
+
+#rotateButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+#opacityControl {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+#opacitySlider {
+  margin: 0 10px;
+}
+
+#opacityValue {
+  color: white;
+  font-size: 16px;
+}
