@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+#startScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.custom-button {
+  background-color: #007bff;
+  color: white;
+  padding: 16px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#appScreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#video,
+#overlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#overlayImage {
+  opacity: 0.5;
+  z-index: 2;
+  pointer-events: none;
+}

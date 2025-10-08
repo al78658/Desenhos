@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>App de Desenho com Câmera</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="startScreen">
+    <label for="imageInput" class="custom-button">Escolher Imagem</label>
+    <input type="file" accept="image/*" id="imageInput" style="display: none;">
+  </div>
+
+  <div id="appScreen" style="display: none;">
+    <video id="video" autoplay muted playsinline></video>
+    <img id="overlayImage" alt="Imagem sobreposta" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
